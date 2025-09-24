@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Ortiz - Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            background: #FF6B6B;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-pill {
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .nav-home { background: #10B981; }
+        .nav-about { background: #6366F1; }
+        .nav-books { background: #3B82F6; }
+        .nav-analytics { background: #F59E0B; }
+        .nav-excel { background: #EAB308; }
+        .nav-sql { background: #8B5CF6; }
+        .nav-contact { background: #06B6D4; }
+
+        .section {
+            padding: 60px 0;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #B0B0B0;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #FF6B6B;
+            display: block;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+            margin: 60px 0;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .dashboard-card h3 {
+            color: #FF6B6B;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .book-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #B0B0B0;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 16px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FF6B6B;
+        }
+
+        .btn {
+            background: #FF6B6B;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #FF5252;
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .contact-item h3 {
+            color: #FF6B6B;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .nav {
+                justify-content: center;
+            }
+            
+            .header-content {
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">DO</div>
+                <nav>
+                    <a href="#" class="nav-pill nav-home" onclick="showSection('home')">Home</a>
+                    <a href="#" class="nav-pill nav-about" onclick="showSection('about')">About</a>
+                    <a href="#" class="nav-pill nav-books" onclick="showSection('books')">Book Reviews</a>
+                    <a href="#" class="nav-pill nav-analytics" onclick="showSection('analytics')">Analytics</a>
+                    <a href="#" class="nav-pill nav-excel" onclick="showSection('excel')">Excel Demos</a>
+                    <a href="#" class="nav-pill nav-sql" onclick="showSection('sql')">SQL Projects</a>
+                    <a href="#" class="nav-pill nav-contact" onclick="showSection('contact')">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- HOME SECTION -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>David Ortiz</h1>
+                <p>A Professional Portfolio in <span style="color: #FF6B6B;">Finance</span> & <span style="color: #4ECDC4;">Data Science</span></p>
+                <p>Showcasing advanced Excel financial models, SQL data analysis, and quantitative trading strategies. Includes interactive dashboards, automated underwriting tools, and educational content on finance and technology books.</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h3>Interactive Visualizations</h3>
+                    <p>Demonstrating Technical Expertise</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">💰</div>
+                    <h3>Finance</h3>
+                    <p>Advanced financial modeling and analysis</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📈</div>
+                    <h3>Data Science</h3>
+                    <p>Statistical analysis and machine learning</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🏠</div>
+                    <h3>Real Estate</h3>
+                    <p>Property analysis and investment strategies</p>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">7+</span>
+                    <span>Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">14</span>
+                    <span>Book Reviews</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span>Advanced Dashboards</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100+</span>
+                    <span>Financial Models</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section">
+            <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">About David Ortiz</h2>
+            <div class="about-content">
+                <div class="profile-image">DO</div>
+                <div>
+                    <h3 style="color: #FF6B6B; margin-bottom: 20px; font-size: 1.8rem;">Professional Journey</h3>
+                    <p style="margin-bottom: 20px; font-size: 1.1rem;">With over 7 years of experience in mortgage lending and financial analysis, I bring a unique combination of practical industry knowledge and advanced analytical skills to every project.</p>
+                    
+                    <h4 style="color: #4ECDC4; margin: 30px 0 15px 0;">Core Expertise:</h4>
+                    <ul style="margin-bottom: 30px; padding-left: 20px;">
+                        <li>NMLS Licensed Mortgage Professional</li>
+                        <li>Advanced Excel Financial Modeling</li>
+                        <li>SQL Database Analysis</li>
+                        <li>Real Estate Investment Analysis</li>
+                        <li>Risk Assessment and Underwriting</li>
+                        <li>Data Science and Statistical Analysis</li>
+                    </ul>
+
+                    <h4 style="color: #4ECDC4; margin: 30px 0 15px 0;">Education & Certifications:</h4>
+                    <ul style="margin-bottom: 30px; padding-left: 20px;">
+                        <li>Data Science Program - Arizona State University</li>
+                        <li>NMLS Licensed Loan Officer</li>
+                        <li>Advanced Excel and Financial Modeling</li>
+                        <li>SQL Database Management</li>
+                    </ul>
+
+                    <h4 style="color: #4ECDC4; margin: 30px 0 15px 0;">Career Objective:</h4>
+                    <p style="font-size: 1.1rem;">Seeking full-time opportunities where I can leverage my unique combination of mortgage industry expertise and data science skills to drive business growth and innovation in financial services.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ANALYTICS SECTION -->
+        <section id="analytics" class="section">
+            <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">Advanced Analytics Dashboards</h2>
+            <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem; color: #B0B0B0;">Professional-grade financial analysis tools and interactive dashboards</p>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>🏢 AlphaBoard Real Estate Intelligence</h3>
+                    <p>Comprehensive real estate market analysis with live data integration, property valuation models, and investment opportunity identification. Features advanced filtering, comparative market analysis, and ROI calculations.</p>
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 8px;">
+                        <strong>Key Features:</strong> Live market data, Property comparisons, Investment analysis, ROI calculations
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>🏠 Property Portfolio Dashboard</h3>
+                    <p>Interactive property analysis with cash flow modeling, expense tracking, and performance metrics. Includes rental yield calculations, maintenance scheduling, and portfolio optimization tools.</p>
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 8px;">
+                        <strong>Key Features:</strong> Cash flow analysis, Expense tracking, Performance metrics, Portfolio optimization
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>📈 Market Cycle Predictor</h3>
+                    <p>Economic indicator analysis and forecasting tool that tracks market cycles, interest rate trends, and economic indicators to predict market movements and investment timing.</p>
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 8px;">
+                        <strong>Key Features:</strong> Economic indicators, Market cycle analysis, Forecasting models, Investment timing
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>🏛️ REIT Performance Analyzer</h3>
+                    <p>Comprehensive REIT analysis with dividend tracking, performance comparisons, and sector analysis. Includes yield calculations, risk assessment, and portfolio allocation recommendations.</p>
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 8px;">
+                        <strong>Key Features:</strong> Dividend tracking, Performance analysis, Sector comparisons, Risk assessment
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>🏦 Mortgage Risk Calculator</h3>
+                    <p>Professional underwriting tool with stress testing, risk assessment, and loan performance prediction. Features automated calculations, scenario analysis, and compliance checking.</p>
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 8px;">
+                        <strong>Key Features:</strong> Stress testing, Risk assessment, Scenario analysis, Compliance checking
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOOKS SECTION -->
+        <section id="books" class="section">
+            <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">Book Review Essays</h2>
+            <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem; color: #B0B0B0;">Deep analytical breakdowns of finance, business, and technology books with practical frameworks and actionable insights.</p>
+            
+            <div class="books-grid">
+                <div class="book-card">
+                    <h3 style="color: #FF6B6B;">Investment Valuation</h3>
+                    <p><strong>Author:</strong> Aswath Damodaran</p>
+                    <p style="margin: 15px 0;">Comprehensive analysis of valuation methodologies, DCF models, and relative valuation techniques with practical applications in equity analysis.</p>
+                </div>
+
+                <div class="book-card">
+                    <h3 style="color: #FF6B6B;">A Man for All Markets</h3>
+                    <p><strong>Author:</strong> Edward Thorp</p>
+                    <p style="margin: 15px 0;">Exploration of quantitative trading strategies, risk management, and the application of mathematical principles to financial markets.</p>
+                </div>
+
+                <div class="book-card">
+                    <h3 style="color: #FF6B6B;">The Millionaire Real Estate Investor</h3>
+                    <p><strong>Author:</strong> Gary Keller</p>
+                    <p style="margin: 15px 0;">Strategic framework for real estate investment, property analysis, and wealth building through real estate portfolios.</p>
+                </div>
+
+                <div class="book-card">
+                    <h3 style="color: #FF6B6B;">Basic Economics</h3>
+                    <p><strong>Author:</strong> Thomas Sowell</p>
+                    <p style="margin: 15px 0;">Fundamental economic principles, market dynamics, and policy analysis with real-world applications and case studies.</p>
+                </div>
+
+                <div class="book-card">
+                    <h3 style="color: #FF6B6B;">The Alchemy of Finance</h3>
+                    <p><strong>Author:</strong> George Soros</p>
+                    <p style="margin: 15px 0;">Market psychology, reflexivity theory, and advanced trading strategies from one of the world's most successful investors.</p>
+                </div>
+
+                <div class="book-card">
+                    <h3 style="color: #FF6B6B;">Storytelling with Data</h3>
+                    <p><strong>Author:</strong> Cole Nussbaumer Knaflic</p>
+                    <p style="margin: 15px 0;">Data visualization principles, effective communication techniques, and best practices for presenting analytical insights.</p>
+                </div>
+
+                <div class="book-card">
+                    <h3 style="color: #FF6B6B;">Learning Python</h3>
+                    <p><strong>Author:</strong> Mark Lutz</p>
+                    <p style="margin: 15px 0;">Comprehensive Python programming guide with applications in data analysis, automation, and financial modeling.</p>
+                </div>
+
+                <div class="book-card">
+                    <h3 style="color: #FF6B6B;">Learning SQL</h3>
+                    <p><strong>Author:</strong> Alan Beaulieu</p>
+                    <p style="margin: 15px 0;">Database management, query optimization, and data analysis techniques for financial and business applications.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXCEL SECTION -->
+        <section id="excel" class="section">
+            <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">Excel Financial Models</h2>
+            <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem; color: #B0B0B0;">Advanced Excel models for financial analysis, real estate investment, and business planning.</p>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>📊 Financial Dashboard</h3>
+                    <p>Interactive financial dashboard with KPI tracking, variance analysis, and automated reporting. Features dynamic charts, conditional formatting, and executive summary views.</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>🏠 Property Analysis Model</h3>
+                    <p>Comprehensive property investment analysis with cash flow projections, sensitivity analysis, and ROI calculations. Includes financing scenarios and tax implications.</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>💰 Mortgage Calculator</h3>
+                    <p>Advanced mortgage calculation tool with amortization schedules, payment scenarios, and refinancing analysis. Features multiple loan comparison and affordability calculations.</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>📈 Investment Portfolio Tracker</h3>
+                    <p>Portfolio management tool with performance tracking, asset allocation analysis, and risk metrics. Includes rebalancing recommendations and tax-loss harvesting.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SQL SECTION -->
+        <section id="sql" class="section">
+            <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">SQL Data Projects</h2>
+            <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem; color: #B0B0B0;">Database analysis projects demonstrating advanced SQL techniques and business intelligence.</p>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>🏦 Loan Portfolio Analysis</h3>
+                    <p>Comprehensive analysis of loan performance, default prediction, and risk assessment using advanced SQL queries and statistical functions.</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>🏠 Real Estate Market Analysis</h3>
+                    <p>Market trend analysis, price prediction models, and comparative market analysis using large real estate datasets and complex joins.</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>📊 Customer Segmentation</h3>
+                    <p>Advanced customer analytics with RFM analysis, cohort analysis, and behavioral segmentation using window functions and CTEs.</p>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>💹 Trading Strategy Backtesting</h3>
+                    <p>Quantitative analysis of trading strategies with performance metrics, risk calculations, and optimization using time-series analysis.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section">
+            <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">Contact Information</h2>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p>davidortiz.re@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📱 Phone</h3>
+                    <p>(562) 528-2788</p>
+                </div>
+                <div class="contact-item">
+                    <h3>💼 LinkedIn</h3>
+                    <p>linkedin.com/in/davidortiz-lending</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📄 Resume</h3>
+                    <p>Available for Download</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 60px 0;">
+                <h3 style="color: #FF6B6B; margin-bottom: 20px;">Professional Availability</h3>
+                <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Currently seeking full-time opportunities in financial analysis, data science, or mortgage lending. Available for immediate start and open to relocation for the right opportunity.</p>
+            </div>
+
+            <div class="contact-form">
+                <h3 style="text-align: center; margin-bottom: 30px; color: #FF6B6B;">Get In Touch</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update URL hash
+            window.location.hash = sectionId;
+        }
+
+        // Handle browser back/forward buttons
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                showSection(hash);
+            } else {
+                showSection('home');
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                showSection(hash);
+            } else {
+                showSection('home');
+            }
+        });
+
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+        });
+    </script>
+</body>
+</html>
